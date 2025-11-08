@@ -14,6 +14,14 @@ import Amenities from '@/components/properties/Amenities';
 import dynamic from 'next/dynamic';
 import { Skeleton } from '@/components/ui/skeleton';
 
+const DynamicMap = dynamic(
+  () => import('@/components/properties/PropertyMap'),
+  {
+    ssr: false,
+    loading: () => <Skeleton className='h-[400px] w-full' />,
+  }
+);
+
 async function PropertyDetailsPage({ params }: { params: { id: string } }) {
   const property = await fetchPropertyDetails(params.id);
   if (!property) redirect('/');
@@ -21,13 +29,7 @@ async function PropertyDetailsPage({ params }: { params: { id: string } }) {
   const details = { baths, bedrooms, beds, guests };
   const firstName = property.profile.firstName;
   const profileImage = property.profile.profileImage;
-  const DynamicMap = dynamic(
-  () => import('@/components/properties/PropertyMap'),
-  {
-    ssr: false,
-    loading: () => <Skeleton className='h-[400px] w-full' />,
-  }
-  );
+
   return (
   <section>
     <BreadCrumbs name={property.name} />
