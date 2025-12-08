@@ -9,7 +9,7 @@ function BookingContainer() {
   if (!range || !range.from || !range.to) return null;
   if (range.to.getTime() === range.from.getTime()) return null;
   return (
-    <div className='w-full'>
+    <div className='w-3/4'>
       <BookingForm />
       <ConfirmBooking />
     </div>

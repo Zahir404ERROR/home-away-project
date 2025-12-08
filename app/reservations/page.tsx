@@ -2,6 +2,7 @@ import { fetchReservations } from '@/utils/actions';
 import Link from 'next/link';
 import EmptyList from '@/components/home/EmptyList';
 import CountryFlagAndName from '@/components/card/CountryFlagAndName';
+import Stats from '@/components/reservations/Stats';
 
 import { formatDate, formatCurrency } from '@/utils/format';
 import {
@@ -26,6 +27,7 @@ async function ReservationsPage() {
       <h4 className='mb-4 capitalize'>
         total reservations : {reservations.length}
       </h4>
+      <Stats />
       <Table>
         <TableCaption>A list of your recent reservations.</TableCaption>
         <TableHeader>
